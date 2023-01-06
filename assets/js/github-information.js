@@ -28,19 +28,19 @@ function repoInformationHTML(repos) {
 
     var listItemsHTML = repos.map(function(repo) {
         return `<li>
-                <a href="$(repo.html_url)" target="_blank">${repo.name}</a>
+                    <a href="$(repo.html_url)" target="_blank">${repo.name}</a>
                 </li>`;
     });
 
-    return `<div class="clearfix repo-list>
-            <p>
-            <strong>Repo List:</strong>
-            </p>
+    return `<div class="clearfix repo-list">
+                <p>
+                    <strong>Repo List:</strong>
+                </p>
             <ul>
                 ${listItemsHTML.join("\n")}
             </ul>
 
-            </div>`
+            </div>`;
 }
 
 function fetchGitHubInformation(event) {
