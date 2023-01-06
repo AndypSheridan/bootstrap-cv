@@ -1,3 +1,9 @@
+axios.get('https://api.github.com/search/users?q=' + props.user, {
+    'headers': {
+      'Authorization': `token ${ghp_dy5eceMX5cnnpU0RpDCq0KWV8A6Xv709Dh2}` 
+    }
+  });
+
 function userInformationHTML(user) {
     return `
         <h2>${user.name}
@@ -13,6 +19,28 @@ function userInformationHTML(user) {
             </div> 
             <p>Followers: ${user.followers} - Following ${user.following} <br> Repos: ${user.public_repos}</p>
         </div>`;
+}
+
+function repoInformationHTML(repos) {
+    if (repos.length === 0) {
+        return `<div class="clearfix repo-list">No repos!</div>`;
+    }
+
+    var listItemsHTML = repos.map(function(repo) {
+        return `<li>
+                <a href="$(repo.html_url)" target="_blank">${repo.name}</a>
+                </li>`;
+    });
+
+    return `<div class="clearfix repo-list>
+            <p>
+            <strong>Repo List:</strong>
+            </p>
+            <ul>
+                ${listItemsHTML.join("\n")}
+            </ul>
+
+            </div>`
 }
 
 function fetchGitHubInformation(event) {
